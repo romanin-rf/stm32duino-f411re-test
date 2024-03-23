@@ -1,6 +1,6 @@
 #pragma once
 
-// ! Найстройки компиляции
+// ! Найстройки сборки
 
 #define DEBUG_MODE true
 
@@ -13,7 +13,6 @@
     #include <LiquidCrystal_I2C.h>
     #include <LCDMenu.h>
 #endif
-
 
 // ! Настройки
 

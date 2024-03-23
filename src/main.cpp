@@ -15,6 +15,8 @@ D8S74X4 d8s4(IC1A, IC1B, IC1C, IC1EN, IC2DATA, IC2UPDT, IC2CLK);
 
 // ! Главные функции
 
+
+
 // ! Задачи FreeRTOS
 
 void taskD8SUpdate(void *pvParameters)

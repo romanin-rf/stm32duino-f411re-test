@@ -48,7 +48,6 @@ class D8S74X4 {
         SR74HC138 *__ic1;
         SR74HC595 *__ic2;
         byte __values[4] = {0b11111111, 0b11111111, 0b11111111, 0b11111111};
-
         bool __begined = false;
         bool __inited = false;
     public:
@@ -90,6 +89,15 @@ class D8S74X4 {
             byte valueDisplay1=0b11111111,
             byte valueDisplay0=0b11111111
         );
+        /// @brief Устанавливает значения в буффер в формате текста.
+        /// @param text Текст, который будет установлен как значение буффера.
+        /// @note Обрезает текст до четырёх символов, начивая с первого символа.
+        void writeText(String text);
+        /// @brief Устанавливает значение в буффер при этом сдвигает текст на опредедённое количество символов.
+        /// @param text Текст, который будет установлен как значение буффера.
+        /// @param shift_length Значение сдвига, если значение отрицательное, то сдвиг происходит влево, иначе в право.
+        /// @note Пустоты заполняются пробелами.
+        void writeTextShift(String text, int shift_length);
         /// @brief Считывает значения из буффера и устанавливает значение для входов индикатора.
         /// @note Рекомдуется, использовать именно эту функцию в связке с функцией задержки установленной на 3 милисекунды.
         /// @note ```cpp
@@ -114,6 +122,4 @@ class D8S74X4 {
         /// @note D8S7X4::updateDisplay(displayNumber);
         /// @note ```
         void updateDisplays();
-        void writeText(String text);
-        void writeTextShift(String text, int shift_length);
 };
