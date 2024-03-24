@@ -9,19 +9,25 @@
 #include <Arduino.h>
 #include <STM32FreeRTOS.h>
 #include <D8S74X4.h>
+#include <Keypad74.h>
 #if DEBUG_MODE
     #include <LiquidCrystal_I2C.h>
     #include <LCDMenu.h>
 #endif
 
-// ! Настройки
+// ! Настройки LCD дисплея
 
-// ! Переменные LCD дисплея
 #if DEBUG_MODE
     #define LCD0_ADDRESS 0x27
     #define LCD0_COLUMNS 16
     #define LCD0_ROWS 2
 #endif
+
+// ! Настройки задержек
+
+#define D8S4_UPDATE_DELAY 3U
+#define D8S4_ANIMATION_DELAY 500U
+#define KEYPAD_CHECK_DELAY 5U
 
 // ! Пины ICx
 

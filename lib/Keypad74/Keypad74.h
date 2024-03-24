@@ -19,17 +19,34 @@ typedef enum {
     KEY74_PRESSED = 3
 } Key74State;
 
+/*
 typedef struct {
     const uint32_t PIN;
-    const uint32_t PIN_MODE;
     const uint8_t ROW;
     const uint8_t NUM;
     const char CODE;
     uint32_t clampedStartTime;
     Key74State state;
 } Key74;
+*/
 
 typedef void (*DelayFunc)(uint32_t);
+
+// ! Тип классы
+
+class Key74 {
+    friend class Keypad74;
+    public:
+        uint32_t clampedStartTime = 0;
+        Key74State state = Key74State::KEY74_REST;
+        uint32_t PIN;
+        uint8_t ROW;
+        uint8_t NUM;
+        char CODE;
+
+        Key74(uint32_t pin, uint8_t row, uint8_t num, const char code);
+};
+
 
 // ! Основной класс
 

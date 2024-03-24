@@ -48,6 +48,7 @@ class D8S74X4 {
         SR74HC138 *__ic1;
         SR74HC595 *__ic2;
         byte __values[4] = {0b11111111, 0b11111111, 0b11111111, 0b11111111};
+        char __valuesText[4] = {' ', ' ', ' ', ' '};
         bool __begined = false;
         bool __inited = false;
     public:
@@ -122,4 +123,6 @@ class D8S74X4 {
         /// @note D8S7X4::updateDisplay(displayNumber);
         /// @note ```
         void updateDisplays();
+
+        char * get_text_buffer();
 };

@@ -84,6 +84,7 @@ void D8S74X4::writeText(String text)
     char t = 0;
     char s = 0;
     byte values[4] = {0b11111110, 0b11111110, 0b11111110, 0b11111110};
+    char valuesText[4] = {' ', ' ', ' ', ' '};
     if (text.length() < 4) {
         for (int n = 4 - text.length(); n > 0; n--) {
             text += ' ';
@@ -94,6 +95,7 @@ void D8S74X4::writeText(String text)
         for (uint8_t si = 0U; si < D8S_CHARAPTERS_LENGTH; si++) {
             s = D8S_CHARAPTERS_KEYS[si];
             if (t == s) {
+                this->__valuesText[vi] = s;
                 values[vi] = D8S_CHARAPTERS_VALUES[si];
                 break;
             };
@@ -118,4 +120,9 @@ void D8S74X4::writeTextShift(
         text = text.substring(alevel);
     };
     return this->writeText(text);
+};
+
+char *D8S74X4::get_text_buffer()
+{
+    return this->__valuesText;
 };

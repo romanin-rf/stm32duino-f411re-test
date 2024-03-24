@@ -1,5 +1,15 @@
 #include <Keypad74.h>
 
+// ! Тип классы
+
+Key74::Key74(uint32_t pin, uint8_t row, uint8_t num, const char code)
+{
+    this->PIN = pin;
+    this->ROW = row;
+    this->NUM = num;
+    this->CODE = code;
+};
+
 // ! Основной класс
 
 Keypad74::Keypad74() {};
@@ -29,9 +39,9 @@ bool Keypad74::is_ready() { return this->__begined && this->__inited; };
 
 bool Keypad74::add_key(Key74 *key)
 {
-    if ( this->is_ready() && (KEYPAD74_MAX_KEYS > this->__keysCount >= 0) )
+    if ( KEYPAD74_MAX_KEYS > this->__keysCount >= 0 )
     {
-        pinMode(key->PIN, key->PIN_MODE);
+        pinMode(key->PIN, INPUT_PULLUP);
         this->__keys[this->__keysCount] = key;
         this->__keysCount++;
         return true;
@@ -41,7 +51,7 @@ bool Keypad74::add_key(Key74 *key)
 
 void Keypad74::select_key(Key74 *key)
 {
-    pinMode(key->PIN, key->PIN_MODE);
+    pinMode(key->PIN, INPUT_PULLUP);
     this->__srm->set(key->ROW);
 };
 
@@ -109,7 +119,7 @@ void Keypad74::update_keys_states()
     };
 };
 
-const char Keypad74::get_key(bool update=true)
+const char Keypad74::get_key(bool update)
 {
     for (uint8_t i = 0; i < this->__keysCount; i++) {
         if (update) {
